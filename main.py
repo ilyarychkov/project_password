@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import random
 import string
 
@@ -16,34 +16,17 @@ def lettersnumbers():
         return lettersnumbers()
 
 
-html = ''' 
-<html> 
- <head> 
- <style> 
- html { 
- color: white; 
- background-image: url("https://is5-ssl.mzstatic.com/image/thumb/Music122/v4/e2/1d/81/e21d812e-3290-11bb-dced-4b3963b731dd/196922264559_Cover.jpg/1200x1200bf-60.jpg"); 
- } 
- p{ 
- font-size: 4em; 
- } 
- </style> 
- </head> 
- <body> 
- <form action = "/" method = post" 
- <p>Сгенерируйте свой пароль:</p> 
- <p><f'{lettersnumbers()}/ 
- <p><input type = "submit" value = "Сгенерировать"/></p> 
- </form> 
- </body> 
-</html> 
-'''
+
 app = Flask(__name__)
 
 
 @app.route("/")
 def index():
-    return f'{html}' \
-           f'{lettersnumbers()}'
+    return render_template("index.html") + lettersnumbers()
+
+
+
+
+
 
 app.run()
